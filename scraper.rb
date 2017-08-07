@@ -8,13 +8,8 @@ results = []
 
 1.times do |i|
   doc = Nokogiri::HTML(open('https://www.bundlestars.com/api/products?page='+i.to_s+'&types=game,dlc&sale=true'))
-  doc.css('.search_result_row').each do |game|
-    price_el = game.at_css('.search_price')
-    price_el.children.each { |c| c.remove if c.name == 'span' }
-    price = price_el.text.strip.split(' ')[0]
-    id = game["data-ds-appid"].to_i
-    puts id, price
-    results.push({id: id, price: price})
+  doc.css('.bs-card-body').each do |game|
+logger.error "Something blew up!"
   end
 end
 
